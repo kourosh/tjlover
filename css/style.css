@@ -1,0 +1,45 @@
+.navbar-brand {
+	font-family: "Domine", serif;
+}
+
+h1 {
+	text-align: center;
+	font-family: "Smythe", cursive;
+	color: #553344;
+}
+.jumbotron {
+	font-family: "Domine", serif;
+	font-size: 48px;
+	font-weight: bold;
+}
+
+.thumbnail h3 {
+	font-family: "Smythe", cursive;
+	color: #553344;
+}
+
+.thumbnail p {
+	font-family: "Domine", serif;
+}
+
+.thumbnail img {
+	max-width:300px;
+}
+
+.thumbnail {
+	height: 550px;
+}
+
+.stars {
+	position: absolute;
+	bottom: 50px;
+}
+
+.caption {
+	position: absolute;
+	top: 45%;
+}
+
+.search-line {
+	display:inline;
+}
