@@ -1,16 +1,29 @@
+.navbar {
+	background-color: #553344;
+}
+
 .navbar-brand {
 	font-family: "Domine", serif;
 }
 
-h1 {
+.search-hero {
+	margin-top: 80px;
+}
+
+
+.headline {
 	text-align: center;
 	font-family: "Smythe", cursive;
 	color: #553344;
-}
-.jumbotron {
-	font-family: "Domine", serif;
-	font-size: 48px;
+	font-size: 64px;
 	font-weight: bold;
+}
+
+
+
+
+.showcase {
+	margin-top: 10px;
 }
 
 .thumbnail h3 {
@@ -38,8 +51,4 @@ h1 {
 .caption {
 	position: absolute;
 	top: 45%;
-}
-
-.search-line {
-	display:inline;
 }
