@@ -30,10 +30,12 @@
 
 .thumbnail p {
 	font-family: "Domine", serif;
+	max-width: 300px;
 }
 
 .thumbnail img {
-	max-width:300px;
+	max-width:200px;
+	max-height: 250px;
 }
 
 .thumbnail {

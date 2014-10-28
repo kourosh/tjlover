@@ -2,8 +2,8 @@
 var express = require("express"),
 	bodyParser = require("body-parser"),
 	methodOverride = require("method-override"),
-	pg = require("pg");
-	models = require('./models/index')
+	pg = require("pg"),
+	models = require("./models/index");
  	
 	// ejs-locals for Layouts
  	engine = require('ejs-locals');
@@ -25,13 +25,18 @@ app.use(express.static(__dirname + '/public'));
 
 // Route for home page
 app.get("/", function(req, res) {
-	res.render("home.ejs", {
-		product: "Speculoos Cookie Butter Jar",
-		description: "Trader John's Speculoos Cookie Butter is, in its most simplistic terms, spreadable Speculoos cookies. Speculoos cookies are classic Belgian cookies with great crunch, and a slightly caramelized, almost-but-not-quite-gingerbread flavor.",
-		picurl: "http://ecx.images-amazon.com/images/I/51lDQdCVPHL.jpg",
-		amazonurl: "http://www.amazon.com/Trader-Joes-Speculoos-Cookie-Butter/dp/B006KK4GUO"
+	//Step 1: Pull out all ids into an array
+	models.Product.find(8).success(function(item) {
+		res.render("home.ejs", {
+			product: item.name,
+			description: item.description,
+			picurl: item.picurl
+		});
 	});
 });
+	//Step 2: Generate random number from 0 to array.length - 1
+	//Step 3: Pull record with that ID from db
+	//Step 4: Repeat
 
 app.get("/admin", function(req, res) {
 	res.render("admin.ejs");
