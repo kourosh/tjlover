@@ -70,4 +70,4 @@ app.get("/login", function(req, res) {
 });
 
 // Bind and listen for connections on given host
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
