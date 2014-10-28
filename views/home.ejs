@@ -6,15 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="A fan site for lovers of Trader Joe's and its products" />
   <meta name="author" content="Kourosh Karimkhany" />
-  <link rel="icon" href="../../favicon.ico" />
 
   <title>TJ Lover: A fan site for lovers of Trader Joe's and its products</title>
 
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 
   <!-- Custom styles for this template -->
-  <link href="../css/style.css" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -25,10 +24,9 @@
   <!-- Google fonts -->
   <link href="http://fonts.googleapis.com/css?family=Smythe" rel="stylesheet" type="text/css" />
   <link href="http://fonts.googleapis.com/css?family=Domine" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
   <!-- Star rating -->
-  <link href="../star-rating/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="star-rating.css" media="all" rel="stylesheet" type="text/css" />
   
 </head>
 
@@ -78,7 +76,7 @@
           <button type="button" class="btn btn-default">Search</button>
         </div>
         <div class="col-md-1">
-          <img src="../assets/pointing-finger-small.png" />
+          <img src="pointing-finger-small.png" />
         </div>
       </div>
     </form>
@@ -92,10 +90,10 @@
     <div class="row">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <img src="http://ecx.images-amazon.com/images/I/51lDQdCVPHL.jpg" alt="Trader Joe's Speculoos Cookie Butter 14.1 Oz (Pack of 2)" />
+          <img src="<%- picurl %>" alt="Trader Joe's Speculoos Cookie Butter 14.1 Oz (Pack of 2)" />
           <div class="caption">
-            <h3>Speculoos Cookie Butter</h3>
-            <p>Trader Joe's Speculoos Cookie Butter is, in its most simplistic terms, spreadable Speculoos cookies. Speculoos cookies are classic Belgian cookies with great crunch, and a slightly caramelized, almost-but-not-quite-gingerbread flavor.</p>
+            <h3><%= product %></h3>
+            <p><%= description %></p>
           </div>
           <p class="stars"><input id="input-6a" class="rating" data-size="xs" data-min="0" data-max="5" data-step=".5" data-show-clear="false" /></p>
         </div>
@@ -142,5 +140,6 @@
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="../star-rating/js/star-rating.min.js" type="text/javascript"></script></body>
+  <script src="star-rating.min.js" type="text/javascript"></script>
+  </body>
 </html>

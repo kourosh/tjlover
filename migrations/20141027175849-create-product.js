@@ -8,13 +8,16 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      product_name: {
+      name: {
         type: DataTypes.STRING
       },
-      sku: {
+      description: {
         type: DataTypes.STRING
       },
-      pic_url: {
+      picurl: {
+        type: DataTypes.STRING
+      },
+      amazonurl: {
         type: DataTypes.STRING
       },
       createdAt: {

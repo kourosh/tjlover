@@ -2,7 +2,7 @@
   "development": {
     "username": null,
     "password": null,
-    "database": "database_development",
+    "database": "tjlover",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
