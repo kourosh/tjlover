@@ -1,18 +1,23 @@
-// Set up node and modeuls
+// Set up node and modules
 var express = require("express"),
 	bodyParser = require("body-parser"),
 	methodOverride = require("method-override"),
 	pg = require("pg");
 	models = require('./models/index')
-
+ 	
+	// ejs-locals for Layouts
+ 	engine = require('ejs-locals');
 
 app = express();
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
+// enable ejs
 app.set("view engine", "ejs");
 
+// enables layout functionality
+app.engine('ejs', engine);
 
 // GET css stylesheets and other static assets
 app.use(express.static(__dirname + '/public'));
