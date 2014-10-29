@@ -10,7 +10,6 @@
 	margin-top: 80px;
 }
 
-
 .headline {
 	text-align: center;
 	font-family: "Smythe", cursive;
@@ -57,9 +56,9 @@
 	top: 45%;
 }
 
-
 .product-page {
 	margin: 0 auto;
+	margin-top: 80px;
 	width: 700px;
 }
 
