@@ -38,38 +38,77 @@ app.get("/", function(req, res) {
 		var productIds= [];
 
 		// Push the primary key IDs of the returned items into the array
-		for (var i=0; i < items.length; i++) {
+		for (var i = 0; i < items.length - 1; i++) {
 			productIds.push(items[i].id);
 		};
 
-		console.log(productIds);
+		console.log("Product IDs: " + productIds);
 
 		// This function generates a random number from 0 to the number
 		// of items in the Products table
 		randomItem = function() {
-			return Math.floor(Math.random()*productIds.length - 1);
+			return Math.floor(Math.random() * productIds.length);
 		};
 
 		// Assign the random number to variable randomPickedItem. This
 		// variable will be used for picking an index in the productIds
 		// array. You need this step because the primary key ID in Products
 		// table might not be sequential.
-		randomPickedItem = productIds[randomItem()];
+		var randomPickedItem = randomItem();
 
 		// Find the product name, description, picture URL and Amazon URL
 		// for the random-picked ID
 		var product = items[randomPickedItem].name,
 				description = items[randomPickedItem].description,
-				picurl = items[randomPickedItem].picurl,
-				amazonurl = items[randomPickedItem].amazonurl;
+				picurl = items[randomPickedItem].picurl;
+
+		// Pick a second random number
+		var randomPickedItem2 = randomItem();
+
+		console.log("Second random picked item: " + randomPickedItem2);
+		
+
+		// Find the second product name, description, picture URL and Amazon URL
+		// for the random-picked ID
+		var product2 = items[randomPickedItem2].name,
+				description2 = items[randomPickedItem2].description,
+				picurl2 = items[randomPickedItem2].picurl;
+
+		console.log("Second item name: " + product2);
+		
+
+		// Pick a third random number
+		var randomPickedItem3 = randomItem();
+
+		console.log("Third random picked item: " + randomPickedItem3);
+
+
+		// Find the third product name, description, picture URL and Amazon URL
+		// for the random-picked ID
+		var product3 = items[randomPickedItem3].name,
+				description3 = items[randomPickedItem3].description,
+				picurl3 = items[randomPickedItem3].picurl;
+
+				console.log("Third product name: " + product3);
 
 		// Now, render the front page ("index.ejs") and pass the EJS variables
 		// that correspond with the above variables.
 		res.render("index.ejs", {
-			product: product,
-			description: description,
-			picurl: picurl,
-			amazonurl: amazonurl
+			Product1: {
+				product: product,
+				description: description,
+				picurl: picurl
+			},
+			Product2: {
+				product: product2,
+				description: description2,
+				picurl: picurl2
+			},
+			Product3: {
+				product: product3,
+				description: description3,
+				picurl: picurl3
+			}			
 		});
 	}); 
 });

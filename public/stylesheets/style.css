@@ -20,7 +20,12 @@
 }
 
 .showcase {
+	margin: 0 auto;
 	margin-top: 10px;
+}
+
+.items {
+	display: inline-block !important;
 }
 
 .thumbnail h3 {
@@ -82,3 +87,4 @@
 .product-page button {
 	margin-left: 50%;
 }
+
