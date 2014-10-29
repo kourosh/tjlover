@@ -52,20 +52,18 @@
 	top: 45%;
 }
 
-.jumbotron {
-	height: 500px;
-}
 
-.jumbotron h1 {
+.product-page h1 {
 	font-family: "Smythe", cursive;
+	font-size: 4em;
 }
 
-.jumbotron p {
+.product-page p {
 	font-family: "Domine", serif;
 	font-size: 16px;
 }
 
-.jumbotron img {
+.product-page img {
 	float:left;
 	max-width: 400px;
 }
@@ -75,6 +73,6 @@
 	float: left;
 }
 
-.text button {
+.product-page button {
 	margin-left: 50%;
 }

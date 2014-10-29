@@ -11,13 +11,13 @@ var express = require("express"),
 app = express();
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // enable ejs
 app.set("view engine", "ejs");
 
 // enables layout functionality
-app.engine('ejs', engine);
+app.engine("ejs", engine);
 
 // GET css stylesheets and other static assets
 app.use(express.static(__dirname + '/public'));
@@ -55,8 +55,15 @@ app.post("/admin", function(req, res) {
 });
 
 // Route for product page
-app.get("/product", function(req, res) {
-	res.render("product.ejs");
+app.get("/product/:id", function(req, res) {
+	models.Product.find(req.params.id).success(function(item) {
+		res.render("product.ejs", {
+			product: item.name,
+			description: item.description,
+			picurl: item.picurl,
+			amazonurl: item.amazonurl
+		});
+	});
 });
 
 // Route to sign-up page
