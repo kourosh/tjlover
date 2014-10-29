@@ -27,7 +27,7 @@ app.use(express.static(__dirname + '/public'));
 app.get("/", function(req, res) {
 	//Step 1: Pull out all ids into an array
 	models.Product.find(8).success(function(item) {
-		res.render("home.ejs", {
+		res.render("index.ejs", {
 			product: item.name,
 			description: item.description,
 			picurl: item.picurl

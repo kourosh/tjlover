@@ -51,3 +51,30 @@
 	position: absolute;
 	top: 45%;
 }
+
+.jumbotron {
+	height: 500px;
+}
+
+.jumbotron h1 {
+	font-family: "Smythe", cursive;
+}
+
+.jumbotron p {
+	font-family: "Domine", serif;
+	font-size: 16px;
+}
+
+.jumbotron img {
+	float:left;
+	max-width: 400px;
+}
+
+.text {
+	width: 300px;
+	float: left;
+}
+
+.text button {
+	margin-left: 50%;
+}
