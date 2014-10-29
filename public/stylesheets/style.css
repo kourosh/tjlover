@@ -53,6 +53,11 @@
 }
 
 
+.product-page {
+	margin: 0 auto;
+	width: 700px;
+}
+
 .product-page h1 {
 	font-family: "Smythe", cursive;
 	font-size: 4em;
@@ -71,6 +76,7 @@
 .text {
 	width: 300px;
 	float: left;
+	display: block;
 }
 
 .product-page button {
