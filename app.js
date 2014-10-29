@@ -59,52 +59,47 @@ app.get("/", function(req, res) {
 		// Find the product name, description, picture URL and Amazon URL
 		// for the random-picked ID
 		var product = items[randomPickedItem].name,
+				id = items[randomPickedItem].id,
 				description = items[randomPickedItem].description,
 				picurl = items[randomPickedItem].picurl;
 
 		// Pick a second random number
-		var randomPickedItem2 = randomItem();
-
-		console.log("Second random picked item: " + randomPickedItem2);
-		
+		randomPickedItem = randomItem();		
 
 		// Find the second product name, description, picture URL and Amazon URL
 		// for the random-picked ID
-		var product2 = items[randomPickedItem2].name,
-				description2 = items[randomPickedItem2].description,
-				picurl2 = items[randomPickedItem2].picurl;
-
-		console.log("Second item name: " + product2);
-		
+		var product2 = items[randomPickedItem].name,
+				id2 = items[randomPickedItem].id,
+				description2 = items[randomPickedItem].description,
+				picurl2 = items[randomPickedItem].picurl;
 
 		// Pick a third random number
-		var randomPickedItem3 = randomItem();
-
-		console.log("Third random picked item: " + randomPickedItem3);
-
+		randomPickedItem = randomItem();
 
 		// Find the third product name, description, picture URL and Amazon URL
 		// for the random-picked ID
-		var product3 = items[randomPickedItem3].name,
-				description3 = items[randomPickedItem3].description,
-				picurl3 = items[randomPickedItem3].picurl;
-
-				console.log("Third product name: " + product3);
+		var product3 = items[randomPickedItem].name,
+				id3 = items[randomPickedItem].id,
+				description3 = items[randomPickedItem].description,
+				picurl3 = items[randomPickedItem].picurl;
 
 		// Now, render the front page ("index.ejs") and pass the EJS variables
 		// that correspond with the above variables.
 		res.render("index.ejs", {
 			Product1: {
+				id: id,
 				product: product,
 				description: description,
 				picurl: picurl
 			},
 			Product2: {
+				id: id2,
 				product: product2,
 				description: description2,
 				picurl: picurl2
 			},
 			Product3: {
+				id: id3,
 				product: product3,
 				description: description3,
 				picurl: picurl3

@@ -30,9 +30,9 @@
     <div class="items col-sm-6 col-md-4">
       <div>
         <div class="thumbnail">
-          <img src="<%= Product1.picurl %>" alt="<%= Product1.product %>" />
+          <a href="/product/<%-Product1.id %>"><img src="<%= Product1.picurl %>" alt="<%= Product1.product %>" /></a>
           <div class="caption">
-            <h3><%= Product1.product %></h3>
+            <h3><a href="/product/<%- Product1.id %>"><%= Product1.product %></a></h3>
             <p><%= Product1.description %></p>
           </div>
           <p class="stars"><input id="input-6a" class="rating" data-size="xs" data-min="0" data-max="5" data-step=".5" data-show-clear="false" /></p>
@@ -44,9 +44,9 @@
     <div class="items col-sm-6 col-md-4">
       <div>
         <div class="thumbnail">
-          <img src="<%= Product2.picurl %>" alt="<%= Product2.product %>" />
+          <a href="/product/<%-Product2.id %>"><img src="<%= Product2.picurl %>" alt="<%= Product2.product %>" /></a>
           <div class="caption">
-            <h3><%= Product2.product %></h3>
+            <h3><a href="/product/<%- Product2.id %>"><%= Product2.product %></a></h3>
             <p><%= Product2.description %></p>
           </div>
           <p class="stars"><input id="input-6a" class="rating" data-size="xs" data-min="0" data-max="5" data-step=".5" data-show-clear="false" /></p>
@@ -58,9 +58,9 @@
     <div class="items col-sm-6 col-md-4">
       <div>
         <div class="thumbnail">
-          <img src="<%= Product3.picurl %>" alt="<%= Product3.product %>" />
+          <a href="/product/<%-Product3.id %>"><img src="<%= Product3.picurl %>" alt="<%= Product3.product %>" /></a>
           <div class="caption">
-            <h3><%= Product3.product %></h3>
+            <h3><a href="/product/<%- Product3.id %>"><%= Product3.product %></a></h3>
             <p><%= Product3.description %></p>
           </div>
           <p class="stars"><input id="input-6a" class="rating" data-size="xs" data-min="0" data-max="5" data-step=".5" data-show-clear="false" /></p>
