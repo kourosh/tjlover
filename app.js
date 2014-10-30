@@ -22,6 +22,36 @@ app.engine("ejs", engine);
 // GET css stylesheets and other static assets
 app.use(express.static(__dirname + '/public'));
 
+// Install Passport modules
+var passport = require("passport"),
+    localStrategy = require("passport-local").Strategy,
+    flash = require('connect-flash'),
+    session = require("cookie-session");
+
+// Configure Passport
+app.use(session( {
+  secret: 'thisismysecretkey',
+  name: 'chocolate chip',
+  maxage: 3600000
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done){
+    models.User.find({
+        where: {
+            id: id
+        }
+    }).done(function(error,user){
+        done(error, user);
+    });
+});
 
 // Route for home page
 app.get("/", function(req, res) {
