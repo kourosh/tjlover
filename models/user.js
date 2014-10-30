@@ -1,11 +1,14 @@
 "use strict";
 
+var bcrypt = require("bcrypt");
+var salt = bcrypt.genSaltSync(10);
+
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
     email: {
       type: DataTypes.STRING,
       validate: {
-        isEmail:true
+        // isEmail:true
       }
     },
     password: DataTypes.STRING
