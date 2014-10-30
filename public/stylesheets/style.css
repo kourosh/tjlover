@@ -79,3 +79,12 @@
 .product-page img {
 	max-width: 300px;
 }
+
+.form-signin-heading h1 {
+	font-weight: "Smythe", cursive;
+	font-size: 4em;
+}
+
+.register {
+	width: 400px;
+}
