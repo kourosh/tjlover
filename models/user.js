@@ -1,5 +1,8 @@
 "use strict";
 
+var passport = require("passport");
+var localStrategy = require("passport-local").Strategy;
+
 var bcrypt = require("bcrypt");
 var salt = bcrypt.genSaltSync(10);
 
@@ -37,6 +40,28 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+
+  passport.use(new localStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+  }, function(username, password, done) {
+      User.find({
+        where: {
+          email: username
+        }
+      }).done(function(error, user) {
+        if (user) {
+          if (User.comparePass(password, user.password)) {
+            done(null, user);
+          } else {
+            done(null, null);
+          }
+        } else {
+          done(null, null);
+        }
+      });
+    }
+  ));
 
   return User;
 };

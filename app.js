@@ -158,7 +158,7 @@ app.get("/", function(req, res) {
 // that product primary key ID.
 app.get("/product/:id", function(req, res) {
 	models.Product.find(req.params.id).success(function(item) {
-		res.render("product.ejs", {
+		res.render("product", {
 			product: item.name,
 			description: item.description,
 			picurl: item.picurl,
@@ -182,7 +182,7 @@ app.post("/product", function(req, res) {
 
 // Route for a product administration page
 app.get("/admin", function(req, res) {
-	res.render("admin.ejs");
+	res.render("admin");
 })
 
 // Route for product create page. A simple page to enter product
@@ -195,13 +195,13 @@ app.post("/admin", function(req, res) {
     picurl: req.body.pictureurl,
     amazonurl: req.body.amazonurl
   }).then(function(product) {
-    res.redirect('/admin');
+    res.redirect("/admin");
   });
 });
 
 // Route to user registration page
 app.get("/signup", function(req, res) {
-	res.render("signup.ejs");
+	res.render("signup");
 });
 
 // Route to register a new user
@@ -210,12 +210,20 @@ app.post("/signup", function(req, res) {
 		email: req.body.email,
 		password: req.body.password
 	});
+	res.redirect("/login");
 });
 
-// Route to log in
+// Login form routes
 app.get("/login", function(req, res) {
-	res.render("login.ejs")
+	res.render("login");
 });
+
+//Set up login POST route to be handled through Passport
+
+app.post("/login", passport.authenticate("local", {
+	successRedirect: "/",
+	failureRedirect: "/login"
+}));
 
 // Bind and listen for connections on given host
 app.listen(process.env.PORT || 3000);
