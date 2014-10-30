@@ -108,7 +108,9 @@ app.get("/", function(req, res) {
 	}); 
 });
 
-// Route for product page
+// Route for product page. This checks the ID in the URL and 
+// returns the name, description, image URL and Amazon URL for 
+// that product primary key ID.
 app.get("/product/:id", function(req, res) {
 	models.Product.find(req.params.id).success(function(item) {
 		res.render("product.ejs", {
@@ -120,7 +122,11 @@ app.get("/product/:id", function(req, res) {
 	});
 });
 
-// Route for product search
+// Route for product search from the search bar. Search bar posts
+// "product". If a product with the same name is found, the
+// product's primary key ID is returned. This route then redirects
+// to the project.ejs page with ID appended to the URL to show 
+// the matching search result.
 app.post("/product", function(req, res) {
 	debugger;
 	models.Product.find( { where: {name: req.body.product} }).done(function(error, item) {
@@ -134,7 +140,9 @@ app.get("/admin", function(req, res) {
 	res.render("admin.ejs");
 })
 
-// Route for product create page
+// Route for product create page. A simple page to enter product
+// info -- name, description, image URL and an Amazon URL where
+// product can be bought (tied to an Amazon affiliate account).
 app.post("/admin", function(req, res) {
   models.Product.create({
     name: req.body.name,
