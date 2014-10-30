@@ -57,14 +57,13 @@
 	top: 95%;
 }
 
-.product-page {
-	margin: 0 auto;
-	margin-top: 80px;
-	width: 700px;
-}
-
 .search-on-product-page {
 	margin-top:100px;
+}
+
+.product-page {
+	margin-top: 80px;
+	width: 900px;
 }
 
 .product-page h1 {
@@ -78,17 +77,5 @@
 }
 
 .product-page img {
-	float:left;
-	max-width: 400px;
+	max-width: 300px;
 }
-
-.text {
-	width: 300px;
-	float: left;
-	display: block;
-}
-
-.product-page button {
-	margin-left: 50%;
-}
-
