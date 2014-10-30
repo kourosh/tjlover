@@ -108,23 +108,6 @@ app.get("/", function(req, res) {
 	}); 
 });
 
-// Route for a product administration page
-app.get("/admin", function(req, res) {
-	res.render("admin.ejs");
-})
-
-// Route for product create page
-app.post("/admin", function(req, res) {
-  models.Product.create({
-    name: req.body.productname,
-    description: req.body.description,
-    picurl: req.body.pictureurl,
-    amazonurl: req.body.amazonurl
-  }).then(function(product) {
-    res.redirect('/admin');
-  });
-});
-
 // Route for product page
 app.get("/product/:id", function(req, res) {
 	models.Product.find(req.params.id).success(function(item) {
@@ -135,6 +118,32 @@ app.get("/product/:id", function(req, res) {
 			amazonurl: item.amazonurl
 		});
 	});
+});
+
+// Route for product search
+app.post("/product", function(req, res) {
+	debugger;
+	models.Product.find( { where: {name: req.body.product} }).done(function(error, item) {
+			if (error) console.log(error);
+			res.redirect('/product/' + item.id);
+		});
+});
+
+// Route for a product administration page
+app.get("/admin", function(req, res) {
+	res.render("admin.ejs");
+})
+
+// Route for product create page
+app.post("/admin", function(req, res) {
+  models.Product.create({
+    name: req.body.name,
+    description: req.body.description,
+    picurl: req.body.pictureurl,
+    amazonurl: req.body.amazonurl
+  }).then(function(product) {
+    res.redirect('/admin');
+  });
 });
 
 // Route to sign-up page

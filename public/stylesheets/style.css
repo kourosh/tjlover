@@ -25,6 +25,7 @@
 
 .items {
 	display: inline-block !important;
+	padding: 3px;
 }
 
 .thumbnail h3 {
@@ -46,20 +47,24 @@
 	height: 550px;
 }
 
-.stars {
-	position: absolute;
-	bottom: 50px;
-}
-
 .caption {
 	position: absolute;
 	top: 45%;
+}
+
+.front-stars {
+	position: absolute;
+	top: 95%;
 }
 
 .product-page {
 	margin: 0 auto;
 	margin-top: 80px;
 	width: 700px;
+}
+
+.search-on-product-page {
+	margin-top:100px;
 }
 
 .product-page h1 {

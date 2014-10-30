@@ -434,7 +434,7 @@
         rtl: false,
         size: 'md',
         showClear: true,
-        showCaption: true,
+        showCaption: false,
         defaultCaption: '{rating} Stars',
         starCaptions: {
             0.5: 'Really terrible',
