@@ -92,3 +92,11 @@
 .form-signin input {
 	margin-bottom: 10px;
 }
+
+p.navbar-text {
+	color: white !important;
+}
+
+.btn-primary {
+	background-color: #BB8888 !important;
+}

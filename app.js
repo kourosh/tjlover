@@ -22,13 +22,20 @@ app.engine("ejs", engine);
 // GET css stylesheets and other static assets
 app.use(express.static(__dirname + '/public'));
 
-// Install Passport modules
+
+///////////////////////////////////////////
+// Passport Installation and Configuration 
+///////////////////////////////////////////
+var bcrypt = require("bcrypt");
+var salt = bcrypt.genSaltSync(10);
+
 var passport = require("passport"),
     localStrategy = require("passport-local").Strategy,
     flash = require('connect-flash'),
     session = require("cookie-session");
 
-// Configure Passport
+//Setup Passport for use
+
 app.use(session( {
   secret: 'thisismysecretkey',
   name: 'chocolate chip',
@@ -52,6 +59,14 @@ passport.deserializeUser(function(id, done){
         done(error, user);
     });
 });
+
+/////////////////////////////////////////////////
+// End of Passport installation and configuration
+/////////////////////////////////////////////////
+
+
+
+
 
 // Route for home page
 app.get("/", function(req, res) {
@@ -187,6 +202,14 @@ app.post("/admin", function(req, res) {
 // Route to user registration page
 app.get("/signup", function(req, res) {
 	res.render("signup.ejs");
+});
+
+// Route to register a new user
+app.post("/signup", function(req, res) {
+	models.User.createNewUser({
+		email: req.body.email,
+		password: req.body.password
+	});
 });
 
 // Route to log in
