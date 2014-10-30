@@ -70,6 +70,7 @@ passport.deserializeUser(function(id, done){
 
 // Route for home page
 app.get("/", function(req, res) {
+
 	// Need to pick three items at random from the Product table in the 
 	// database to display on the front page. To do this, we have to first
 	// find all the available products, because products could be added or 
@@ -148,7 +149,7 @@ app.get("/", function(req, res) {
 				product: product3,
 				description: description3,
 				picurl: picurl3
-			}			
+			}, isAuthenticated: req.isAuthenticated()			
 		});
 	}); 
 });
@@ -162,7 +163,8 @@ app.get("/product/:id", function(req, res) {
 			product: item.name,
 			description: item.description,
 			picurl: item.picurl,
-			amazonurl: item.amazonurl
+			amazonurl: item.amazonurl,
+			isAuthenticated: req.isAuthenticated()
 		});
 	});
 });
@@ -216,6 +218,12 @@ app.post("/signup", function(req, res) {
 // Login form routes
 app.get("/login", function(req, res) {
 	res.render("login");
+});
+
+// Logout route
+app.get("/logout", function(req, res) {
+	req.logout();
+	res.redirect("/");
 });
 
 //Set up login POST route to be handled through Passport

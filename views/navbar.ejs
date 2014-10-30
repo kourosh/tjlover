@@ -4,8 +4,13 @@
         <a class="navbar-brand" href="/">TJ Lover</a>
       </div>
       <div class="navbar-right">
-        <a href="/login"><p class="navbar-text">Log In</p></a>
-        <a href="/signup"><p class="navbar-text">Register</p></a>
+        <% if (!isAuthenticated) { %>
+          <a href="/login"><p class="navbar-text">Log In</p></a>
+          <a href="/signup"><p class="navbar-text">Register</p></a>
+          <% } %>
+        <% if (isAuthenticated) { %>
+          <a href="/logout"><p class="navbar-text">Log Out</p></a>      
+        <% } %>
       </div>
     </div><!-- end container -->
   </nav>
