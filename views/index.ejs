@@ -1,5 +1,9 @@
 <% layout ("layout") %>
 
+  <!-- navbar -->
+  <% include navbar.ejs %>
+
+
   <!-- Hero section with product search form -->
 
   <!-- Hero headline -->
@@ -10,20 +14,7 @@
   <div class="container"> <!-- Search box container -->
 
     <!-- Search box -->
-    <form method="post" action="/product">
-      <div class="row">
-        <div class="col-md-10">
-          <label for="product-search-form" class="sr-only">Product Search</label>
-          <input type="text" class="form-control" id="product-search-form" name="product" placeholder="Product Name" />
-        </div>
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-default">Search</button>
-        </div>
-        <div class="col-md-1">
-          <img src="/images/pointing-finger-small.png" />
-        </div>
-      </div>
-    </form>
+    <% include searchbar.ejs %>
     <!-- End search box -->
 
   </div> <!-- End search form container -->

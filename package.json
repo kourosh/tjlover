@@ -9,12 +9,17 @@
   "author": "Kourosh Karimkhany",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^0.8.0",
     "body-parser": "^1.9.1",
+    "connect-flash": "^0.1.1",
+    "cookie-session": "^1.0.2",
     "ejs": "^1.0.0",
     "ejs-locals": "^1.0.2",
     "express": "^4.10.0",
     "lodash": "^2.4.1",
     "method-override": "^2.3.0",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
     "pg": "^3.6.2",
     "sequelize": "^2.0.0-rc2",
     "sequelize-cli": "^0.3.3"
