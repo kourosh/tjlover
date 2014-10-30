@@ -184,7 +184,7 @@ app.post("/admin", function(req, res) {
   });
 });
 
-// Route to sign-up page
+// Route to user registration page
 app.get("/signup", function(req, res) {
 	res.render("signup.ejs");
 });
