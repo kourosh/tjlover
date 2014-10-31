@@ -28,7 +28,12 @@
         <div class="caption">
           <h3><a href="/product/<%- Product1.id %>"><%= Product1.product %></a></h3>
           <p><%= Product1.description %></p>
+          <% if (!isAuthenticated) { %>
+          <a href="/login"><p class="stars front-stars"><input id="input-6a" class="rating" data-size="xs" data-min="0" data-max="5" data-step=".5" data-show-clear="false" /></p></a>
+          <% } %>
+          <% if (isAuthenticated) { %>
           <p class="stars front-stars"><input id="input-6a" class="rating" data-size="xs" data-min="0" data-max="5" data-step=".5" data-show-clear="false" /></p>
+          <% } %>
         </div>
       </div>
     </div>

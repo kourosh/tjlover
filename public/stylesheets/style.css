@@ -99,4 +99,12 @@ p.navbar-text {
 
 .btn-primary {
 	background-color: #BB8888 !important;
+	font-family: "Smythe", cursive;
+	font-size: 2em;
+}
+
+.register-request {
+	margin-top: 10px;
+	font-family: "Domine", serif;
+	font-size: 16px;
 }

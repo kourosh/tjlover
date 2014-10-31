@@ -162,8 +162,8 @@ app.get("/product/:id", function(req, res) {
 			description: item.description,
 			picurl: item.picurl,
 			amazonurl: item.amazonurl,
-			isAuthenticated: req.isAuthenticated(),
-			// averageRating: 
+			isAuthenticated: req.isAuthenticated()//,
+			//averageRating: item.getAverageRating()
 		});
 	});
 });

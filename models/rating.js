@@ -9,21 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-      },
-      getAverage: function(productId) {
-        models.Rating.findAll( {where: {product_id: productId } }).done(function(error, rating) {
-
-          if (error) {console.log(error)};
-          
-          console.log(rating);
-
-          // var sum;
-          // for (var i = 0; i < rating.length; i++ ) {
-          //   sum += parseInt( rating[i], 10);
-          // }
-          // var averageRating = sum / rating.length;
-          // return averageRating;
-        });
+        Rating.belongsTo(models.Product, { foreignKey: "product_id" });
       }
     }
     
