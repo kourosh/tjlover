@@ -18,7 +18,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-      // associations can be defined here
+      // A user can rate many products, so a user will have
+      // many ratings.
       },
       // This method encrypts a password with blowfish
       hashPass: function(password) {

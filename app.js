@@ -88,8 +88,6 @@ app.get("/", function(req, res) {
 			productIds.push(items[i].id);
 		};
 
-		console.log("Product IDs: " + productIds);
-
 		// This function generates a random number from 0 to the number
 		// of items in the Products table
 		randomItem = function() {
@@ -164,7 +162,8 @@ app.get("/product/:id", function(req, res) {
 			description: item.description,
 			picurl: item.picurl,
 			amazonurl: item.amazonurl,
-			isAuthenticated: req.isAuthenticated()
+			isAuthenticated: req.isAuthenticated(),
+			averageRating: getAverage(item.id)
 		});
 	});
 });
