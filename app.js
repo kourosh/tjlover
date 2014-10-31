@@ -163,10 +163,12 @@ app.get("/product/:id", function(req, res) {
 			picurl: item.picurl,
 			amazonurl: item.amazonurl,
 			isAuthenticated: req.isAuthenticated(),
-			averageRating: getAverage(item.id)
+			// averageRating: 
 		});
 	});
 });
+
+
 
 // Route for product search from the search bar. Search bar posts
 // "product". If a product with the same name is found, the

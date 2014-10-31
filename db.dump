@@ -1,0 +1,119 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+SET search_path = public, pg_catalog;
+
+--
+-- Data for Name: Products; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY "Products" (id, name, description, picurl, amazonurl, "createdAt", "updatedAt") FROM stdin;
+3	Speculoos Cookie Butter	Trader John's Speculoos Cookie Butter is, in its most simplistic terms, spreadable Speculoos cookies. Speculoos cookies are classic Belgian cookies with great crunch, and a slightly caramelized, almost-but-not-quite-gingerbread flavor.	http://ecx.images-amazon.com/images/I/51lDQdCVPHL.jpg	http://www.amazon.com/Trader-Joes-Speculoos-Cookie-Butter/dp/B006KK4GUO	2014-10-27 18:59:16.4-07	2014-10-27 18:59:16.4-07
+4	Organic Black Beans	Nutritionally dense, full of flavor, versatile and exceptionally well priced, Trader Joe's Organic Black Beans are as well rounded as beans can be.	http://designassets.traderjoes.com/Uploads/TJ-organic-black-beans.jpg		2014-10-27 21:02:42.428-07	2014-10-27 21:02:42.428-07
+5	Chile Tomatoless Salsa	This is uniquely flavored, with a base of sweet corn, blended with finely diced red bell peppers, onions, jalapeño peppers, and a bit of sugar. 	http://designassets.traderjoes.com/Uploads/TJ-Corn-and-Chile-Tomatoless-Salsa.jpg	http://www.amazon.com/Trader-Joes-Chile-Tomatoless-Salsa/dp/B008AM3PAC	2014-10-27 21:04:43.915-07	2014-10-27 21:04:43.915-07
+6	Pumpkin Spice Latte	Based on the traditional Indian drink masala chai, Trader Joe's Pumpkin Spice Chai starts is a blend of honey and vanilla, heightened by a mélange of cinnamon, anise, clove, cardamom, and ginger.	http://www.traderjoes.com/images/fearless-flyer/uploads/article-1832/pumpkin-spice-chai.png	http://www.amazon.com/Trader-Joes-Pumpkin-Spice-Latte/dp/B009O76HBQ	2014-10-27 21:08:31.897-07	2014-10-27 21:08:31.897-07
+7	Mini Orange Cranberry Tea Scones	Moist, slightly crumbly, and oh-so-buttery, Trader Joe's Mini Orange Cranberry Tea Scones showcase the classic orange-cranberry flavor combo, with a big burst of real orange and tart-sweet cranberries.	http://www.traderjoes.com/images/fearless-flyer/uploads/article-1829/mini-orange-cranberry-tea-scones.png		2014-10-27 21:11:53.397-07	2014-10-27 21:11:53.397-07
+8	Julienned Root Vegetables	Next time you’re craving French fries, we recommend getting back to your roots... This new item from our freezers is a medley of root-worthy tubers, including carrots, beets, parsnips, and sweet potatoes.	http://designassets.traderjoes.com/Uploads/julienned-root-vegetables.png		2014-10-27 21:15:29.232-07	2014-10-27 21:15:29.232-07
+9	Toasted Coconut Pancake Mix	Toasted Coconut Pancake Mix is the kind of thing that people who are stranded on tropical islands fantasize about.	http://designassets.traderjoes.com/Uploads/01111-toasted-coconut-pancake-mix.png		2014-10-27 21:16:50.12-07	2014-10-27 21:16:50.12-07
+10	Pumpkin Butter	Doesn't actually contain butter, but it does have a distinctively rich, butter-like consistency. That richness is from its fruit-pulp-to-sugar ratio, which is higher than that of jam or preserves.	http://www.traderjoes.com/images/fearless-flyer/uploads/article-1859/pumpkin-butter.png	http://www.amazon.com/Trader-Joes-Pumpkin-Butter/dp/B0067UGQ78	2014-10-28 10:11:46.085-07	2014-10-28 10:11:46.085-07
+11	Crunchy Salted Peanut Butter	The peanuts are roasted and ground to a crunchy butter, then the flax and chia seeds are mixed in for extra crunch.	http://www.traderjoes.com/images/fearless-flyer/uploads/article-1856/peanut-butter-with-flax-and-chia-seeds.png	http://www.amazon.com/Trader-Joes-Crunchy-Salted-Peanut/dp/B00MMLN8KE	2014-10-28 10:13:51.925-07	2014-10-28 10:13:51.925-07
+12	Turkish Honey	Turkey could be called the center of the honey universe. This honey is derived from the nectar of flowers and trees unique to the Mediterranean ecosystem that sets Turkey apart	http://www.traderjoes.com/images/fearless-flyer/uploads/article-1869/turkish-honey.png	http://www.amazon.com/Trader-Joes-Turkish-Honey-Pack/dp/B00O4JZFW6/ref=sr_1_2?s=grocery&ie=UTF8&qid=1414516598&sr=1-2&keywords=trader+joe%27s+turkish+honey	2014-10-28 10:17:03.094-07	2014-10-28 10:17:03.094-07
+20	Organic Bartlett Pears	These will generally be green and rather firm. Allow them to ripen at room temperature - their color will change to a yellow-ish hue. They're perfect for eating at that point.	http://traderjoes.com/images/fearless-flyer/uploads/article-1875/bartlett-pears.png		2014-10-29 19:57:52.536-07	2014-10-29 19:57:52.536-07
+13	Kabocha Squash	This green marvel is a Kabocha Squash, often described as a “Japanese pumpkin,” due to the similarity of its shape, and the sweetness of its flesh.	http://designassets.traderjoes.com/Uploads/wn-kabocha-squash2.png		2014-10-29 15:40:32.22-07	2014-10-29 15:40:32.22-07
+14	Baking Chips	When baking is in season, chips become a necessity. We don’t mean potato chips. Or the English kind. We mean baking chips, of the Chocolate, White Chocolate, and Peanut Butter kind.	http://traderjoes.com/images/fearless-flyer/uploads/article-1898/baking-chips.png		2014-10-29 19:45:41.586-07	2014-10-29 19:45:41.586-07
+15	Chocolate Coconut Almonds	The premise is simple: an almond, surrounded by coconut, surrounded by chocolate. Simple, brilliant, and incredibly delicious. Why did it take us so long to think of this?	http://traderjoes.com/images/fearless-flyer/uploads/article-1897/choc-coconut-almonds.png	http://www.amazon.com/Trader-Joes-Chocolate-Coconut-Almonds/dp/B00O4K6ZWY	2014-10-29 19:50:29.646-07	2014-10-29 19:50:29.646-07
+16	Dark Chocolate Cookie Butter Cups	Trader Joe's Dark Chocolate Speculoos Cookie Butter Cups are kissing cousins to our Dark Chocolate Peanut Butter Cups.	http://traderjoes.com/images/fearless-flyer/uploads/article-1900/drk-choc-cookie-butter-cups.png	http://www.amazon.com/Trader-Chocolate-Speculoos-Cookie-Butter/dp/B00O4L1MKI	2014-10-29 19:52:01.738-07	2014-10-29 19:52:01.738-07
+17	Dark Chocolate Pumpkin Spice Salted Caramels	These treats are delivered in two-bite size pieces in which Belgian chocolate envelops rich, creamy caramel that’s imbued with the flavor of pumpkin and gently spiced with clove, nutmeg, cinnamon, and ginger.	http://traderjoes.com/images/fearless-flyer/uploads/article-1901/pumpkin-salted-caramels.png	http://www.amazon.com/Trader-Joes-Chocolate-Pumpkin-Caramels/dp/B00NXC16JG	2014-10-29 19:53:10.291-07	2014-10-29 19:53:10.291-07
+18	Toscano Cheese with Cinnamon	Toscano with Cinnamon has the nutty flavor of aged Parmesan and the creamy texture of farmstead Cheddar. Each young wheel of cheese is coated in cinnamon—as the cheese ages, the cinnamon gently infuses the cheese.	http://traderjoes.com/images/fearless-flyer/uploads/article-1837/toscano-cheese.png		2014-10-29 19:54:39.897-07	2014-10-29 19:54:39.897-07
+19	Organic Gala Apples	Heart-shaped fruit with distinctively colored skin - yellow-orange with red striping.  They're among the softer-eating apples, yet still crisp, making them good snacks for adults and kids alike.	http://traderjoes.com/images/fearless-flyer/uploads/article-1876/gala-apples.png		2014-10-29 19:55:49.839-07	2014-10-29 19:55:49.839-07
+21	All Natural Free Range Whole Roasting Chicken	Minimally processed, with no artificial ingredients. We guarantee that our all natural chickens were fed a 100% vegetarian diet and never given antibiotics, so there's no chance of antibiotic residue in our All Natural Chicken. 	http://traderjoes.com/images/fearless-flyer/uploads/article-1885/roasting-chicken.png		2014-10-29 19:59:15.289-07	2014-10-29 19:59:15.289-07
+22	Fully Baked Chicken Pot Pie	Ours features large hunks of chicken, with big chunks of carrots, potatoes and mushrooms, joined by a savory gravy and topped with a buttery, fully-baked pastry crust.	http://traderjoes.com/images/fearless-flyer/uploads/article-1889/chicken-pot-pies.png		2014-10-29 20:00:19.019-07	2014-10-29 20:00:19.019-07
+23	Roasted Mashed Sweet Potatoes	Covington sweet potatoes grown in the American south, roasted to caramelize their natural sugars, and mashed until they're nearly - but not quite—smooth.	http://traderjoes.com/images/fearless-flyer/uploads/article-1848/roasted-mashed-sweet-potatoes.png		2014-10-29 20:01:11.839-07	2014-10-29 20:01:11.839-07
+24	Organic Vegetarian Chili	This is a hearty, substantial, nutritious meal that's easy to prepare and always satisfying. Its eight grams of protein per serving come from organic red beans and organic tofu (yes, we put tofu in chili; shush up).	http://traderjoes.com/images/fearless-flyer/uploads/article-1851/organic-vegetarian-chili.png	http://www.amazon.com/Trader-Joes-Organic-Chili-Vegetarian/dp/B00DZE749S	2014-10-29 20:02:57.977-07	2014-10-29 20:02:57.977-07
+25	Quinoa Cowboy Veggie Burgers	With multi-hued quinoa (red, white, and black) setting the stage, black beans, corn, red peppers, and plenty of seasonings are blended together and formed into a burger patty.	http://traderjoes.com/images/fearless-flyer/uploads/article-1847/quinoa-cowboy-veggie-burgers.png		2014-10-29 20:04:03.202-07	2014-10-29 20:04:03.202-07
+26	Harvest Blend Complete Salad	This salad-in-a-bag kit begins with baby lettuces and baby greens like spinach and kale, and gets additional veggie crunch from cruciferous inclusions like broccoli and cauliflower.	http://traderjoes.com/images/fearless-flyer/uploads/article-1872/harvest-blend.png		2014-10-29 20:07:06.569-07	2014-10-29 20:07:06.569-07
+27	Uncured Turkey Cranberry Apple Sausages	Serve Turkey Cranberry Apple Sausage with mashed potatoes, scrambled eggs or sliced and speared with sweet potato coins & fresh cranberries (on a toothpick) as an appetizer.	http://designassets.traderjoes.com/Uploads/wn-turkey-cranberry-apple-sausage2.png		2014-10-30 06:15:37.267-07	2014-10-30 06:15:37.267-07
+28	Raw Pistachios	The pistachio’s nutty grin is really no wonder. These nuts have many reasons to smile, not the least of which is their attractive, inimitable flavor, unique among their nut cousins.	http://designassets.traderjoes.com/Uploads/053380-raw-pistachios-di.png		2014-10-30 06:17:39.796-07	2014-10-30 06:17:39.796-07
+\.
+
+
+--
+-- Name: Products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('"Products_id_seq"', 28, true);
+
+
+--
+-- Data for Name: Ratings; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY "Ratings" (id, stars, user_id, product_id, "createdAt", "updatedAt") FROM stdin;
+\.
+
+
+--
+-- Name: Ratings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('"Ratings_id_seq"', 1, false);
+
+
+--
+-- Data for Name: SequelizeMeta; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY "SequelizeMeta" (id, "from", "to") FROM stdin;
+1	20141027175753	20141027175753
+2	20141027175753	20141027175849
+3	20141027175753	20141027175939
+\.
+
+
+--
+-- Name: SequelizeMeta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('"SequelizeMeta_id_seq"', 3, true);
+
+
+--
+-- Data for Name: Users; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY "Users" (id, email, password, "createdAt", "updatedAt") FROM stdin;
+1	\N	\N	2014-10-30 14:31:06.78-07	2014-10-30 14:31:06.78-07
+2	asdkfjlsdjf2@dklfajls.com	$2a$10$s.h271Q07ub8DJFyKMXfXeQwEpQg.T2OvALWRLbq6ABK5.0.sR68K	2014-10-30 14:32:39.663-07	2014-10-30 14:32:39.663-07
+3	asdkfjlsdjf2@dklfajls.com	$2a$10$s.h271Q07ub8DJFyKMXfXeQwEpQg.T2OvALWRLbq6ABK5.0.sR68K	2014-10-30 14:34:39.648-07	2014-10-30 14:34:39.648-07
+4	jkajlsdjfl@lasdj.com	$2a$10$3sY90KimDj7BKa6uJNSvgOCzVjST0NLChMEg4Pbk6qnVXfs.b9dUa	2014-10-30 14:42:57.832-07	2014-10-30 14:42:57.832-07
+5	lkjlkzjlkjfx@kjlaef.com	$2a$10$.D/A/idPKC7jeAnXwusVCe7ViisH9qGKrY6tQye1jKwfaLQvtpk/.	2014-10-30 14:43:23.829-07	2014-10-30 14:43:23.829-07
+6	alskjdf@falksdjf.com	$2a$10$lEDcQtipQpw3fvWBrohhzebpwfCaC2cll3CKyOdgKVhek27yzD0zW	2014-10-30 14:58:11.092-07	2014-10-30 14:58:11.092-07
+7	asdfskjls@asdlkfjlsa.com	$2a$10$vbcIRqkOKWywDwX4CZ7kUOJv8GV5B9lIgrMNh7RYk0wrn5nJBM6ye	2014-10-30 14:59:51.358-07	2014-10-30 14:59:51.358-07
+8	kouroshk@gmail.com	$2a$10$hgw.BHTUP45QKTrn7jkmpurEWqmRESnTiybPIqOydFfRc7IroXsIC	2014-10-30 15:07:32.687-07	2014-10-30 15:07:32.687-07
+9	jhkjashdfjkh@asdfjash.com	$2a$10$hgw.BHTUP45QKTrn7jkmpu5daTWkl50dwuOzz0RmKFy95g.LbTifC	2014-10-30 15:08:47.822-07	2014-10-30 15:08:47.822-07
+10	kouroshk@gmail.com	$2a$10$hgw.BHTUP45QKTrn7jkmpurEWqmRESnTiybPIqOydFfRc7IroXsIC	2014-10-30 15:11:12.179-07	2014-10-30 15:11:12.179-07
+11	kouroshk@gmail.com	$2a$10$0NshlC7mAcBfSc39F8/IseB3IvNYzcsZkp3K22ekJ2nHSURnyZgmy	2014-10-30 15:20:48.035-07	2014-10-30 15:20:48.035-07
+12	josh@josh.com	$2a$10$0NshlC7mAcBfSc39F8/IseG0g1MhWj4AqX368fwEDI4yf0IvVkyuK	2014-10-30 15:21:09.34-07	2014-10-30 15:21:09.34-07
+13	josh@josh.com	$2a$10$0NshlC7mAcBfSc39F8/IseG0g1MhWj4AqX368fwEDI4yf0IvVkyuK	2014-10-30 15:21:16.411-07	2014-10-30 15:21:16.411-07
+\.
+
+
+--
+-- Name: Users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('"Users_id_seq"', 13, true);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
