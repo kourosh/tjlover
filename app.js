@@ -26,8 +26,19 @@ app.use(express.static(__dirname + '/public'));
 ///////////////////////////////////////////
 // Passport Installation and Configuration 
 ///////////////////////////////////////////
-var bcrypt = require("bcrypt");
-var salt = bcrypt.genSaltSync(10);
+var bcrypt;
+var salt = null;
+try {
+	bcrypt = require('bcrypt');
+	salt = bcrypt.genSaltSync(10);
+} catch (e) {
+	try {
+		bcrypt = require('bcryptjs');
+		salt = bcrypt.genSaltSync(10);
+	} catch (err) {
+		bcrypt = null;
+	}
+}
 
 var passport = require("passport"),
     localStrategy = require("passport-local").Strategy,
@@ -78,15 +89,15 @@ app.get("/", function(req, res) {
 
 	// Start with a Sequelize query to find all the items in the 
 	// Product table.
-	models.Product.findAll().done(function(error, items) {
-		
+	models.Product.findAll().then(function(items) {
+
 		// Create blank array for storing IDs of all returned products
 		var productIds= [];
 
 		// Push the primary key IDs of the returned items into the array
-		for (var i = 0; i < items.length - 1; i++) {
+		for (var i = 0; i < items.length; i++) {
 			productIds.push(items[i].id);
-		};
+		}
 
 		// This function generates a random number from 0 to the number
 		// of items in the Products table
@@ -156,15 +167,61 @@ app.get("/", function(req, res) {
 // returns the name, description, image URL and Amazon URL for 
 // that product primary key ID.
 app.get("/product/:id", function(req, res) {
-	models.Product.find(req.params.id).success(function(item) {
-		res.render("product", {
-			product: item.name,
-			description: item.description,
-			picurl: item.picurl,
-			amazonurl: item.amazonurl,
-			isAuthenticated: req.isAuthenticated()//,
-			//averageRating: item.getAverageRating()
+	models.Product.find(req.params.id).then(function(item) {
+		if (!item) return res.status(404).send('Not found');
+		// Compute average rating and pass product id to view
+		item.getAverageRating().then(function(avg) {
+			res.render("product", {
+				product: item.name,
+				description: item.description,
+				picurl: item.picurl,
+				amazonurl: item.amazonurl,
+				isAuthenticated: req.isAuthenticated(),
+				averageRating: avg,
+				productId: item.id
+			});
 		});
+	}).catch(function(err){
+		console.log(err);
+		res.status(500).send('Server error');
+	});
+});
+
+// Route to save a rating via AJAX
+app.post('/rating', function(req, res) {
+	if (!req.isAuthenticated || !req.isAuthenticated()) {
+		return res.status(401).json({ error: 'authentication required' });
+	}
+
+	var stars = parseFloat(req.body.stars);
+	var productId = parseInt(req.body.product_id, 10);
+	// If the user already rated this product, update the existing rating
+	models.Rating.find({ where: { user_id: req.user.id, product_id: productId } }).then(function(existing) {
+		var savePromise;
+		if (existing) {
+			savePromise = existing.updateAttributes({ stars: stars });
+		} else {
+			savePromise = models.Rating.create({
+				stars: stars,
+				product_id: productId,
+				user_id: req.user.id
+			});
+		}
+
+		savePromise.then(function(rating) {
+			// return updated average
+			models.Product.find(productId).then(function(product) {
+				product.getAverageRating().then(function(avg) {
+					res.json({ success: true, average: avg });
+				});
+			});
+		}).catch(function(err) {
+			console.log(err);
+			res.status(500).json({ error: 'db error' });
+		});
+	}).catch(function(err) {
+		console.log(err);
+		res.status(500).json({ error: 'db error' });
 	});
 });
 
@@ -176,11 +233,13 @@ app.get("/product/:id", function(req, res) {
 // to the project.ejs page with ID appended to the URL to show 
 // the matching search result.
 app.post("/product", function(req, res) {
-	debugger;
-	models.Product.find( { where: {name: req.body.product} }).done(function(error, item) {
-			if (error) console.log(error);
-			res.redirect('/product/' + item.id);
-		});
+	models.Product.find({ where: { name: req.body.product } }).then(function(item) {
+		if (!item) return res.redirect('/');
+		res.redirect('/product/' + item.id);
+	}).catch(function(err){
+		console.log(err);
+		res.redirect('/');
+	});
 });
 
 // Route for a product administration page

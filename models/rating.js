@@ -10,6 +10,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         // associations can be defined here
         Rating.belongsTo(models.Product, { foreignKey: "product_id" });
+        Rating.belongsTo(models.User, { foreignKey: "user_id" });
       }
     }
     
