@@ -1,0 +1,32 @@
+<% layout("layout") %>
+
+  <!-- navbar -->
+  <% include navbar.ejs %>
+
+  <!-- Search box -->
+  <% include searchbar.ejs %>
+
+  <div class="container" style="margin-top: 80px;">
+    <h2>Results for "<%= query %>"</h2>
+
+    <% if (results.length === 0) { %>
+      <p>No products found. Try a different search.</p>
+    <% } else { %>
+      <div class="row showcase">
+        <% results.forEach(function(item) { %>
+          <div class="items col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <a href="/product/<%= item.id %>"><img src="<%= item.picurl %>" alt="<%= item.name %>" /></a>
+              <div class="caption">
+                <h3><a href="/product/<%= item.id %>"><%= item.name %></a></h3>
+                <p><%= item.description %></p>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Footer partial -->
+  <% include globalfooter.ejs %>

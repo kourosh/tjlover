@@ -1,0 +1,16 @@
+<% layout("layout") %>
+
+    <div class="container register">
+
+      <form class="form-signin" role="form" method="post" action="/forgot">
+        <h2 class="form-signin-heading">Reset your password</h2>
+        <% if (message) { %>
+          <p class="text-info"><%= message %></p>
+        <% } %>
+        <input type="email" name="email" class="form-control" placeholder="Your email address" required autofocus>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Send reset link</button>
+      </form>
+
+      <p class="register-request"><a href="/login">Back to log in</a></p>
+
+    </div>

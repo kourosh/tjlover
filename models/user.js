@@ -27,7 +27,9 @@ module.exports = function(sequelize, DataTypes) {
         // isEmail:true
       }
     },
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    resetToken: DataTypes.STRING,
+    resetTokenExpires: DataTypes.DATE
   }, {
     classMethods: {
       associate: function(models) {
@@ -49,7 +51,7 @@ module.exports = function(sequelize, DataTypes) {
 
       // This method creates a new user in the database
       createNewUser: function(userInfo) {
-        User.create({
+        return User.create({
           email: userInfo.email,
           password: this.hashPass(userInfo.password)
         });
@@ -65,16 +67,15 @@ module.exports = function(sequelize, DataTypes) {
         where: {
           email: username
         }
-      }).done(function(error, user) {
-        if (user) {
-          if (User.comparePass(password, user.password)) {
-            done(null, user);
-          } else {
-            done(null, null);
-          }
+      }).then(function(user) {
+        if (!user) return done(null, false);
+        if (User.comparePass(password, user.password)) {
+          done(null, user);
         } else {
-          done(null, null);
+          done(null, false);
         }
+      }).catch(function(error) {
+        done(error);
       });
     }
   ));

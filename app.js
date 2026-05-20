@@ -1,5 +1,6 @@
 // Set up node and modules
-var express = require("express"),
+var crypto = require("crypto"),
+    express = require("express"),
 	bodyParser = require("body-parser"),
 	methodOverride = require("method-override"),
 	pg = require("pg"),
@@ -99,44 +100,18 @@ app.get("/", function(req, res) {
 			productIds.push(items[i].id);
 		}
 
-		// This function generates a random number from 0 to the number
-		// of items in the Products table
-		randomItem = function() {
-			return Math.floor(Math.random() * productIds.length);
+		var pickRandom = function() {
+			var idx = Math.floor(Math.random() * items.length);
+			return items.splice(idx, 1)[0];
 		};
 
-		// Assign the random number to variable randomPickedItem. This
-		// variable will be used for picking an index in the productIds
-		// array. You need this step because the primary key ID in Products
-		// table might not be sequential.
-		var randomPickedItem = randomItem();
+		var pick1 = pickRandom();
+		var pick2 = pickRandom();
+		var pick3 = pickRandom();
 
-		// Find the product name, description, picture URL and Amazon URL
-		// for the random-picked ID
-		var product = items[randomPickedItem].name,
-				id = items[randomPickedItem].id,
-				description = items[randomPickedItem].description,
-				picurl = items[randomPickedItem].picurl;
-
-		// Pick a second random number
-		randomPickedItem = randomItem();		
-
-		// Find the second product name, description, picture URL and Amazon URL
-		// for the random-picked ID
-		var product2 = items[randomPickedItem].name,
-				id2 = items[randomPickedItem].id,
-				description2 = items[randomPickedItem].description,
-				picurl2 = items[randomPickedItem].picurl;
-
-		// Pick a third random number
-		randomPickedItem = randomItem();
-
-		// Find the third product name, description, picture URL and Amazon URL
-		// for the random-picked ID
-		var product3 = items[randomPickedItem].name,
-				id3 = items[randomPickedItem].id,
-				description3 = items[randomPickedItem].description,
-				picurl3 = items[randomPickedItem].picurl;
+		var product = pick1.name, id = pick1.id, description = pick1.description, picurl = pick1.picurl;
+		var product2 = pick2.name, id2 = pick2.id, description2 = pick2.description, picurl2 = pick2.picurl;
+		var product3 = pick3.name, id3 = pick3.id, description3 = pick3.description, picurl3 = pick3.picurl;
 
 		// Now, render the front page ("index.ejs") and pass the EJS variables
 		// that correspond with the above variables.
@@ -233,10 +208,11 @@ app.post('/rating', function(req, res) {
 // to the project.ejs page with ID appended to the URL to show 
 // the matching search result.
 app.post("/product", function(req, res) {
-	models.Product.find({ where: { name: req.body.product } }).then(function(item) {
-		if (!item) return res.redirect('/');
-		res.redirect('/product/' + item.id);
-	}).catch(function(err){
+	var term = req.body.product ? req.body.product.trim() : '';
+	if (!term) return res.redirect('/');
+	models.Product.findAll({ where: ['name LIKE ?', '%' + term + '%'] }).then(function(items) {
+		res.render('search', { results: items, query: term, isAuthenticated: req.isAuthenticated() });
+	}).catch(function(err) {
 		console.log(err);
 		res.redirect('/');
 	});
@@ -271,8 +247,12 @@ app.post("/signup", function(req, res) {
 	models.User.createNewUser({
 		email: req.body.email,
 		password: req.body.password
+	}).then(function() {
+		res.redirect("/login");
+	}).catch(function(err) {
+		console.log(err);
+		res.redirect("/signup");
 	});
-	res.redirect("/login");
 });
 
 // Login form routes
@@ -292,6 +272,69 @@ app.post("/login", passport.authenticate("local", {
 	successRedirect: "/",
 	failureRedirect: "/login"
 }));
+
+// Forgot password routes
+var sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+app.get("/forgot", function(req, res) {
+	res.render("forgot", { message: null });
+});
+
+app.post("/forgot", function(req, res) {
+	var email = req.body.email ? req.body.email.trim() : '';
+	if (!email) return res.render("forgot", { message: "Please enter your email address." });
+
+	var token = crypto.randomBytes(32).toString("hex");
+	var expires = new Date(Date.now() + 3600000); // 1 hour
+
+	models.User.find({ where: { email: email } }).then(function(user) {
+		if (!user) {
+			// Don't reveal whether the address exists
+			return res.render("forgot", { message: "If that address is registered, a reset link has been sent." });
+		}
+		return user.updateAttributes({ resetToken: token, resetTokenExpires: expires }).then(function() {
+			var baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+			var resetUrl = baseUrl + '/reset/' + token;
+			var msg = {
+				to: email,
+				from: process.env.FROM_EMAIL || 'noreply@traderlover.com',
+				subject: 'Trader Lover — password reset',
+				text: 'Click the link below to reset your password. It expires in 1 hour.\n\n' + resetUrl,
+				html: '<p>Click the link below to reset your password. It expires in 1 hour.</p><p><a href="' + resetUrl + '">' + resetUrl + '</a></p>'
+			};
+			return sgMail.send(msg).then(function() {
+				res.render("forgot", { message: "Reset link sent — check your inbox." });
+			});
+		});
+	}).catch(function(err) {
+		console.log(err);
+		res.render("forgot", { message: "Something went wrong. Please try again." });
+	});
+});
+
+app.get("/reset/:token", function(req, res) {
+	models.User.find({ where: { resetToken: req.params.token, resetTokenExpires: { gt: new Date() } } }).then(function(user) {
+		if (!user) return res.render("forgot", { message: "Reset link is invalid or has expired." });
+		res.render("reset", { token: req.params.token, message: null });
+	}).catch(function(err) {
+		console.log(err);
+		res.redirect("/forgot");
+	});
+});
+
+app.post("/reset/:token", function(req, res) {
+	models.User.find({ where: { resetToken: req.params.token, resetTokenExpires: { gt: new Date() } } }).then(function(user) {
+		if (!user) return res.render("forgot", { message: "Reset link is invalid or has expired." });
+		var newPassword = models.User.hashPass(req.body.password);
+		return user.updateAttributes({ password: newPassword, resetToken: null, resetTokenExpires: null }).then(function() {
+			res.redirect("/login");
+		});
+	}).catch(function(err) {
+		console.log(err);
+		res.render("reset", { token: req.params.token, message: "Something went wrong. Please try again." });
+	});
+});
 
 // Bind and listen for connections on given host
 app.listen(process.env.PORT || 3000);

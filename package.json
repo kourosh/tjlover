@@ -12,6 +12,7 @@
   "author": "Kourosh Karimkhany",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^8.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.9.1",
     "connect-flash": "^0.1.1",
@@ -23,22 +24,19 @@
     "method-override": "^2.3.0",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
-    "pg": "^3.6.2",
+    "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",
+    "reflect-metadata": "^0.1.13",
     "sequelize": "^2.0.0-rc2",
     "sequelize-cli": "^0.3.3",
-    "pg": "^8.10.0",
-    "typeorm": "^0.3.16",
-    "reflect-metadata": "^0.1.13"
-    "sqlite3": "^6.0.1"
-
-  ,
+    "sqlite3": "^6.0.1",
+    "typeorm": "^0.3.16"
+  },
   "devDependencies": {
-    "typescript": "^5.2.2",
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.5.6",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
-    "@types/express": "^4.17.17",
-    "@types/node": "^20.5.6"
-  }
+    "typescript": "^5.2.2"
   }
 }
